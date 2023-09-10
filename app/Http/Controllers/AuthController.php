@@ -45,6 +45,9 @@ public function register(StoreUserRequest $request): \Illuminate\Http\JsonRespon
 }
 public function logout(): \Illuminate\Http\JsonResponse
 {
-    return response()->json('logout');
+    Auth::user()->currentAccessToken()->delete();
+    return $this->success([
+       'message'=>'You have successfully been logged out.'
+    ]);
 }
 }
