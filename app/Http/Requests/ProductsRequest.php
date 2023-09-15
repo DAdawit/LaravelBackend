@@ -6,13 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProductsRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,9 +22,10 @@ class ProductsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required','string'],
-            'description'=>['required'],
-            'price'=>['required']
+            'name'=>['required'],
+            'description'=>['required','number'],
+            'price'=>['required','number'],
+            'quantity'=>['required']
         ];
     }
 }

@@ -83,12 +83,7 @@ class TaskController extends Controller
     {
         return $this->isNotAuthorized($task) ? $this->isNotAuthorized($task) : $task->delete();
 
-//        if(Auth::user()->id !== $task->user_id){
-//            return $this->error('','you are not allowed to access this data',403);
-//        }else{
-//            $task->delete();
-//            return response()->json('',204,[]);
-//        }
+
     }
 
     private function isNotAuthorized($task){

@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 
 /*
@@ -29,7 +29,7 @@ Route::post('/register',[AuthController::class,'register']);
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::resource('/products',ProductsController::class);
+    Route::resource('/products',ProductController::class);
     Route::resource('/tasks',TaskController::class);
 });
 

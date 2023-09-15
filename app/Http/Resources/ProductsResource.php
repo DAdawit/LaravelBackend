@@ -23,6 +23,9 @@ class ProductsResource extends JsonResource
                 'name'=>$this->name,
                 'description'=>$this->description,
                 'price'=>$this->price,
+                'quantity'=>$this->quantity,
+                'hidden'=>$this->hidden,
+                'discount'=>$this->discount
             ],
             'user'=>[
                 'id'=>(string)$this->user->id,

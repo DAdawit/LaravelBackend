@@ -16,8 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('description');
-            $table->bigInteger('price');
-            $table->foreign('user_id')->references('id')-> on('users')->cascadeOnDelete();
+            $table->integer('price');
+            $table->integer('discount')->default(0);
+            $table->integer('quantity');
+            $table->boolean('hidden')->default(false);
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
