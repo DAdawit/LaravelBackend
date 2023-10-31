@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         return CategoryResourse::collection(
-            TrainingCategory::paginate(20)
+            Category::paginate(20)
         );
     }
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             "name"=>$request["name"]
         ]);
 
-        return new TrainingCategoryResourse($category);
+        return new CategoryResourse($category);
     }
 
     /**
