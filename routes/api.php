@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\VenueController;
 
 
 /*
@@ -34,6 +35,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/tasks',TaskController::class);
     Route::resource('/products',ProductController::class);
     Route::resource('/trainings',TrainingController::class);
+    Route::resource('/venues',VenueController::class);
 
 });
 
