@@ -28,6 +28,7 @@ public function login(LoginUserRequest $request): \Illuminate\Http\JsonResponse
         'token'=>$user->createToken('Api Token of'.$user->name)->plainTextToken
         ]);
 }
+
 public function register(StoreUserRequest $request): \Illuminate\Http\JsonResponse
 {
     $request->validated($request->all());
@@ -43,6 +44,7 @@ public function register(StoreUserRequest $request): \Illuminate\Http\JsonRespon
         'token'=>$user->createToken('API Token of'.$user->name)->plainTextToken,
     ]);
 }
+
 public function logout(): \Illuminate\Http\JsonResponse
 {
     Auth::user()->currentAccessToken()->delete();
