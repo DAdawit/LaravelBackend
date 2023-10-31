@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TrainingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,9 @@ Route::post('/register',[AuthController::class,'register']);
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::resource('/products',ProductController::class);
     Route::resource('/tasks',TaskController::class);
+    Route::resource('/products',ProductController::class);
+    Route::resource('/trainings',TrainingController::class);
+
 });
 

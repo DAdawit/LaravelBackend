@@ -83,7 +83,6 @@ class TaskController extends Controller
     {
         return $this->isNotAuthorized($task) ? $this->isNotAuthorized($task) : $task->delete();
 
-
     }
 
     private function isNotAuthorized($task){

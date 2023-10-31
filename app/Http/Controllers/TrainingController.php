@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TrainingRequest;
+use App\Http\Resources\TaskResource;
+use App\Http\Resources\TrainingResource;
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrainingController extends Controller
 {
@@ -12,7 +16,9 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        //
+        return TrainingResource::collection(
+            Training::paginate(20)
+        );
     }
 
     /**
@@ -20,15 +26,21 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TrainingRequest $request)
     {
-        //
+        $request->validated($request->all());
+
+        $training = Training::create([
+           'user_id'=>Auth::user()->id,
+           'name'=>$request["name"],
+        ]);
+        return new TrainingResource($training);
     }
 
     /**
@@ -36,7 +48,7 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        //
+        return new TrainingResource($training);
     }
 
     /**
@@ -52,7 +64,12 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training)
     {
-        //
+        if(Auth::user()->id !== $training->user_id){
+            return $this->error('','you are not allowed to access this data',403);
+        }else{
+            $training->update($request->all());
+            return new TrainingResource($training);
+        }
     }
 
     /**
@@ -60,6 +77,12 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training)
     {
-        //
+        return $this->isNotAuthorized($training) ? $this->isNotAuthorized($training) : $training->delete();
+    }
+
+    private function isNotAuthorized($task){
+        if(Auth::user()->id !== $task->user_id){
+            return $this->error('','you are not allowed to access this data',403);
+        }
     }
 }
