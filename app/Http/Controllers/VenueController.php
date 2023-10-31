@@ -9,6 +9,7 @@ use App\Models\Training;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
 
 class VenueController extends Controller
 {

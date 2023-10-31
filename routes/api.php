@@ -10,6 +10,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FormatController;
+use App\Http\Controllers\CourseController;
 
 
 /*
@@ -40,5 +41,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/venues',VenueController::class);
     Route::resource('/categories',CategoryController::class);
     Route::resource('/formats',FormatController::class);
+    Route::resource('/courses',CourseController::class);
 });
 

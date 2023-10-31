@@ -8,6 +8,7 @@ use App\Http\Resources\TrainingResource;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
 
 class TrainingController extends Controller
 {

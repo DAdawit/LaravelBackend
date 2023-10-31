@@ -9,6 +9,7 @@ use App\Models\Format;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
 
 class FormatController extends Controller
 {

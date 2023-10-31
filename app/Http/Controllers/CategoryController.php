@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\TrainingCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
 
 class CategoryController extends Controller
 {

@@ -45,7 +45,6 @@ class ProductController extends Controller
             'discount'=>$request["discount"],
             'hidden'=>$request["hidden"]
         ]);
-
         return new ProductsResource($product);
     }
 
