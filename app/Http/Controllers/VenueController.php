@@ -83,8 +83,8 @@ class VenueController extends Controller
         return $this->isNotAuthorized($venue) ? $this->isNotAuthorized($venue) : $venue->delete();
     }
 
-    private function isNotAuthorized($task){
-        if(Auth::user()->id !== $task->user_id){
+    private function isNotAuthorized($venue){
+        if(Auth::user()->id !== $venue->user_id){
             return $this->error('','you are not allowed to access this data',403);
         }
     }
