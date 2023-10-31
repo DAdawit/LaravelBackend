@@ -8,8 +8,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\VenueController;
-use App\Http\Controllers\TrainingCategoryController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FormatController;
 
 
 /*
@@ -38,8 +38,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/products',ProductController::class);
     Route::resource('/trainings',TrainingController::class);
     Route::resource('/venues',VenueController::class);
-    Route::resource('/trainings-categories',TrainingCategoryController::class);
     Route::resource('/categories',CategoryController::class);
-
+    Route::resource('/formats',FormatController::class);
 });
 
