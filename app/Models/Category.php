@@ -10,4 +10,8 @@ class Category extends Model
     protected $fillable =["name","user_id"];
 
     use HasFactory;
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
 }

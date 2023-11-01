@@ -18,12 +18,13 @@ class TrainingResource extends JsonResource
             'id'=>(string)$this->id,
             'attributes'=>[
                 'name'=>$this->name,
-                'description'=>$this->description
+                'description'=>$this->description,
+                'category'=>[
+                    'id'=>(string)$this->category->id,
+                    'name'=>$this->category->name,
+                ]
             ],
-            'category'=>[
-                'id'=>(string)$this->category->id,
-                'name'=>$this->category->name,
-            ]
+
         ];
     }
 }

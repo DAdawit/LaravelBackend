@@ -19,17 +19,15 @@ class CourseResource extends JsonResource
             "attributes"=>[
                 "title"=>$this->title,
                 "description"=>$this->description,
-                "course_outline"=>$this->course_outline
-            ],
-            "training"=>[
+                "course_outline"=>$this->course_outline,
+                "fee"=>$this->fee,
+                "training"=>[
                 "id"=>(string)$this->training->id,
                 "name"=>$this->training->name,
-                "description"=>$this->training->description
+                "description"=>$this->training->description,
+                ],
+                'schedules' => ScheduleResource::collection($this->schedules),
             ],
-            "venue"=>[
-                "id"=>(string)$this->venue->id,
-                "name"=>$this->venue->name,
-            ]
         ];
     }
 }

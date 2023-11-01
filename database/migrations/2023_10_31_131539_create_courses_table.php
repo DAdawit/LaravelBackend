@@ -19,8 +19,10 @@ return new class extends Migration
             $table->text('course_outline');
             $table->unsignedBigInteger('training_id');
             $table->unsignedBigInteger('venue_id');
+            $table->unsignedBigInteger('format_id');
+            $table->integer('fee');
             $table->timestamps();
-
+            $table->foreign('format_id')->references('id')->on('formats')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('training_id')->references('id')->on('trainings')->cascadeOnDelete();
             $table->foreign('venue_id')->references('id')->on('venues')->cascadeOnDelete();

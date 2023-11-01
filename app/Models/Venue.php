@@ -9,4 +9,8 @@ class Venue extends Model
 {
     protected $fillable=["name",'user_id'];
     use HasFactory;
+
+     public function courses(){
+         return $this->hasMany(Course::class);
+     }
 }

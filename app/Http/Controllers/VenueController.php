@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TrainingRequest;
 use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
+use App\Models\Course;
 use App\Models\Training;
 use App\Models\Venue;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class VenueController extends Controller
             Venue::paginate(20)
         );
     }
+
 
 
     /**

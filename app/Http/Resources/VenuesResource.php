@@ -17,8 +17,9 @@ class VenuesResource extends JsonResource
         return [
             'id'=>(string)$this->id,
             'attributes'=>[
-                'name'=>$this->name
-            ]
+                'name'=>$this->name,
+                'courses' => CourseResource::collection($this->courses)
+            ],
         ];
     }
 }

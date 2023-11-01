@@ -11,6 +11,8 @@ use App\Http\Controllers\VenueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FormatController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\UserAccessDatasController;
 
 
 /*
@@ -32,6 +34,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
 
+Route::get('/venue-courses/{id}', [UserAccessDatasController::class, 'getVenueWithCourses']);
+Route::get('/format-courses/{id}', [UserAccessDatasController::class, 'getAllCoursesByFormat']);
+Route::get('/category-trainings', [UserAccessDatasController::class, 'getAllCategoriesWithTrainings']);
+Route::get('/training-courses/{id}', [UserAccessDatasController::class, 'getTrainingCourses']);
+Route::get('/course-schedules/{id}', [UserAccessDatasController::class, 'getCourseSchedules']);
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
@@ -42,5 +49,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/categories',CategoryController::class);
     Route::resource('/formats',FormatController::class);
     Route::resource('/courses',CourseController::class);
+    Route::resource('/schedules',ScheduleController::class);
+
 });
+
 

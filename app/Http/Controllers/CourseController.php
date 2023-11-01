@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\TrainingResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,10 @@ class CourseController extends Controller
         $course =  Course::create([
             "user_id"=>Auth::user()->id,
             "title"=>$request["title"],
+            "fee"=>$request["fee"],
             "description"=>$request["description"],
             "course_outline"=>$request["course_outline"],
+            "format_id"=>$request["format_id"],
             "training_id"=>$request["training_id"],
             "venue_id"=>$request["venue_id"]
         ]);
@@ -51,7 +54,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return new CourseResource($course);
+
     }
 
     /**
