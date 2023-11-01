@@ -52,4 +52,12 @@ public function logout(): \Illuminate\Http\JsonResponse
        'message'=>'You have successfully been logged out.'
     ]);
 }
+
+    public function verifyToken(Request $request){
+            $user=$request->user('sanctum');
+            if($request->user('sanctum')== null){
+                return response('unauthorized',401);
+            }else
+         return $user;
+    }
 }

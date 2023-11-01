@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
+Route::post('/verify-token',[AuthController::class,'verifyToken']);
 
 Route::get('/venue-courses/{id}', [UserAccessDatasController::class, 'getVenueWithCourses']);
 Route::get('/format-courses/{id}', [UserAccessDatasController::class, 'getAllCoursesByFormat']);
