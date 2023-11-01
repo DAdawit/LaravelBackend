@@ -65,12 +65,13 @@ class FormatController extends Controller
      */
     public function update(Request $request, Format $format)
     {
-        if(Auth::user()->id !== $format->user_id){
-            return $this->error('','you are not allowed to access this data',403);
-        }else{
-            $format->update($request->all());
-            return new TrainingResource($format);
-        }
+        // if(Auth::user()->id !== $format->user_id){
+        //     return $this->error('','you are not allowed to access this data',403);
+        // }else{
+
+        // }
+        $format->update($request->all());
+        return new FormatResource($format);
     }
 
     /**
@@ -78,11 +79,13 @@ class FormatController extends Controller
      */
     public function destroy(Format $format)
     {
-        return $this->isNotAuthorized($format) ? $this->isNotAuthorized($format) : $format->delete();
+        // return $this->isNotAuthorized($format) ? $this->isNotAuthorized($format) : $format->delete();
+        return $format->delete();
+
     }
 
-    private function isNotAuthorized($task){
-        if(Auth::user()->id !== $task->user_id){
+    private function isNotAuthorized($format){
+        if(Auth::user()->id !== $format->user_id){
             return $this->error('','you are not allowed to access this data',403);
         }
     }

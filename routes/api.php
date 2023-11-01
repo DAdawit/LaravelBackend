@@ -51,7 +51,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/formats',FormatController::class);
     Route::resource('/courses',CourseController::class);
     Route::resource('/schedules',ScheduleController::class);
-
 });
 
 

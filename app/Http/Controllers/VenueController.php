@@ -70,12 +70,14 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        if(Auth::user()->id !== $venue->user_id){
-            return $this->error('','you are not allowed to access this data',403);
-        }else{
-            $venue->update($request->all());
-            return new TrainingResource($venue);
-        }
+//        if(Auth::user()->id !== $venue->user_id){
+//            return $this->error('','you are not allowed to access this data',403);
+//        }else{
+//            $venue->update($request->all());
+//            return new TrainingResource($venue);
+//        }
+        $venue->update($request->all());
+        return new VenuesResource($venue);
     }
 
     /**
