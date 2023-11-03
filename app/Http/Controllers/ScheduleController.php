@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleRequest;
+use App\Http\Resources\FormatResource;
 use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Product;
@@ -67,7 +68,8 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $schedule->update($request->all());
+        return new FormatResource($schedule);
     }
 
     /**
@@ -75,6 +77,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        return $schedule->delete();
+
     }
 }
