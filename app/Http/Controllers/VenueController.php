@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TrainingRequest;
+use App\Http\Requests\VenuesRequest;
 use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
 use App\Models\Course;
@@ -37,12 +38,11 @@ class VenueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TrainingRequest $request)
+    public function store(VenuesRequest $request)
     {
         $request->validated($request->all());
 
         $venue = Venue::create([
-            'user_id'=>Auth::user()->id,
             'name'=>$request["name"],
         ]);
         return new VenuesResource($venue);

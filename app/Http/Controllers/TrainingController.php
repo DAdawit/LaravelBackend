@@ -38,10 +38,9 @@ class TrainingController extends Controller
         $request->validated($request->all());
 
         $training = Training::create([
-           'user_id'=>Auth::user()->id,
            'name'=>$request["name"],
            'category_id'=>$request["category_id"],
-           'description'=>$request['description']
+           'description'=>$request['description'],
         ]);
         return new TrainingResource($training);
     }

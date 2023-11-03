@@ -37,7 +37,6 @@ class ScheduleController extends Controller
         $request->validated($request->all());
 
         $schedule= Schedule::create([
-            "user_id"=>Auth::user()->id,
             "start_date"=>$request["start_date"],
             "end_date"=>$request["end_date"],
             "fee"=>$request["fee"],

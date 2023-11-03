@@ -22,7 +22,8 @@ class TrainingResource extends JsonResource
                 'category'=>[
                     'id'=>(string)$this->category->id,
                     'name'=>$this->category->name,
-                ]
+                ],
+                'courses' => CourseResource::collection($this->courses),
             ],
 
         ];

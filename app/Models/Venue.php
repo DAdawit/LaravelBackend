@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venue extends Model
 {
-    protected $fillable=["name",'user_id'];
+    protected $fillable=["name"];
     use HasFactory;
 
      public function courses(){

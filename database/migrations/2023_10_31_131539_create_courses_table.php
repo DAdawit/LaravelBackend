@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
             $table->text('course_outline');
             $table->unsignedBigInteger('training_id');
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('format_id');
+            $table->date("start_date");
+            $table->date("end_date");
             $table->integer('fee');
             $table->timestamps();
             $table->foreign('format_id')->references('id')->on('formats')->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('training_id')->references('id')->on('trainings')->cascadeOnDelete();
             $table->foreign('venue_id')->references('id')->on('venues')->cascadeOnDelete();
         });

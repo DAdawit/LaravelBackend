@@ -40,7 +40,6 @@ class CategoryController extends Controller
         $request->validated($request->all());
 
         $category=Category::create([
-            "user_id"=>Auth::user()->id,
             "name"=>$request["name"]
         ]);
 

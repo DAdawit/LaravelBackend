@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable=[
-        "user_id",
         "title",
         "description",
         "course_outline",
         "training_id",
         "venue_id",
         "fee",
-        "format_id"
+        "format_id",
+        "start_date",
+        "end_date"
         ];
     use HasFactory;
 
@@ -24,5 +25,8 @@ class Course extends Model
     }
     public function schedules(){
         return $this->hasMany(Schedule::class);
+    }
+    public function venue(){
+        return $this->belongsTo(Venue::class);
     }
 }

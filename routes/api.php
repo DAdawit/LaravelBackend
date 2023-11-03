@@ -45,12 +45,13 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
     Route::resource('/tasks',TaskController::class);
     Route::resource('/products',ProductController::class);
-    Route::resource('/trainings',TrainingController::class);
     Route::resource('/venues',VenueController::class);
     Route::resource('/categories',CategoryController::class);
     Route::resource('/formats',FormatController::class);
-    Route::resource('/courses',CourseController::class);
-    Route::resource('/schedules',ScheduleController::class);
-});
 
+});
+Route::resource('/courses',CourseController::class);
+Route::resource('/schedules',ScheduleController::class);
+
+Route::resource('/trainings',TrainingController::class);
 

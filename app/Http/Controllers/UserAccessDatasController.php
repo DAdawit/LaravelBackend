@@ -47,10 +47,10 @@ class UserAccessDatasController extends Controller
         if (!$training){
             return null;
         }
-        $courses= Course::where('training_id',$trainingId)->paginate(20);
+        $courses= Course::where('training_id',$trainingId)->with(['venue'])->paginate(20);
         $training["courses"]=$courses;
 
-        return response()->json(['data',$training]);
+        return response()->json(['data'=>$training]);
         }
 
         public function getCourseSchedules($courseId){
@@ -58,8 +58,8 @@ class UserAccessDatasController extends Controller
         if(!$course){
             return null;
         }
-        $schedules = Schedule::where("course_id",$courseId)->paginate(20);
+        $schedules = Schedule::where("course_id",$courseId)->with(['venue'])->paginate(20);
         $course["schedules"]= $schedules;
-        return response()->json(["data",$course]);
+        return response()->json(["data"=>$course]);
         }
 }

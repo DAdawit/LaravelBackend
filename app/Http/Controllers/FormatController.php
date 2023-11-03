@@ -39,7 +39,6 @@ class FormatController extends Controller
         $request->validated($request->all());
 
         $format = Format::create([
-            'user_id'=>Auth::user()->id,
             'name'=>$request["name"],
         ]);
         return new FormatResource($format);

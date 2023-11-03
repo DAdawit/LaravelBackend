@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\FormatResource;
 use App\Http\Resources\TrainingResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -37,14 +38,15 @@ class CourseController extends Controller
         $request->validated($request->all());
 
         $course =  Course::create([
-            "user_id"=>Auth::user()->id,
             "title"=>$request["title"],
             "fee"=>$request["fee"],
             "description"=>$request["description"],
             "course_outline"=>$request["course_outline"],
             "format_id"=>$request["format_id"],
             "training_id"=>$request["training_id"],
-            "venue_id"=>$request["venue_id"]
+            "venue_id"=>$request["venue_id"],
+            "start_date"=>$request["start_date"],
+            "end_date"=>$request["end_date"],
         ]);
         return new CourseResource($course);
     }
@@ -71,7 +73,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $course->update($request->all());
+        return new FormatResource($course);
     }
 
     /**
@@ -79,6 +82,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        return $course->delete();
+
     }
 }

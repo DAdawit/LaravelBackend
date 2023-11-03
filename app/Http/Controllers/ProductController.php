@@ -37,7 +37,6 @@ class ProductController extends Controller
         $request->validated($request->all());
 
         $product = Product::create([
-            'user_id'=>Auth::user()->id,
             'name'=>$request["name"],
             'description'=>$request["description"],
             'price'=>$request["price"],
