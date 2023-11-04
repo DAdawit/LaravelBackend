@@ -62,4 +62,15 @@ class UserAccessDatasController extends Controller
         $course["schedules"]= $schedules;
         return response()->json(["data"=>$course]);
         }
+
+        public function getUpcomingCourses(){
+        $courses = Course::latest()->take(10)->with(['venue'])->get();
+        return response()->json(["data"=>$courses]);
+        }
+
+        public function getCoursesWithVenue(){
+            $courses = Course::latest()->with(['venue'])->paginate(15);
+            return response()->json(["data"=>$courses]);
+
+        }
 }

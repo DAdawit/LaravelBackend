@@ -40,6 +40,8 @@ Route::get('/format-courses/{id}', [UserAccessDatasController::class, 'getAllCou
 Route::get('/category-trainings', [UserAccessDatasController::class, 'getAllCategoriesWithTrainings']);
 Route::get('/training-courses/{id}', [UserAccessDatasController::class, 'getTrainingCourses']);
 Route::get('/course-schedules/{id}', [UserAccessDatasController::class, 'getCourseSchedules']);
+Route::get('/latest-courses', [UserAccessDatasController::class, 'getUpcomingCourses']);
+Route::get('/courses-with-schedule', [UserAccessDatasController::class, 'getCoursesWithVenue']);
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
