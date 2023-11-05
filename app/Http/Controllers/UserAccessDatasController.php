@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Http\Requests\ContactUsRequest;
 use App\Http\Resources\CategoryResourse;
 use App\Http\Resources\ContactUsResource;
 use App\Http\Resources\FormatResource;
 use App\Http\Resources\VenuesResource;
+use App\Models\Book;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Course;
@@ -125,6 +127,20 @@ class UserAccessDatasController extends Controller
             "location"=>$request["location"],
             "phoneNumber"=>$request["phoneNumber"],
             "email"=>$request["email"],
+        ]);
+        return new ContactUsResource($contact);
+    }
+
+    public function BookCourse(BookRequest $request)
+    {
+        $request->validated($request->all());
+        $contact=Book::create([
+            "firstName"=>$request["firstName"],
+            "lastName"=>$request["lastName"],
+            "email"=>$request["email"],
+            "phoneNumber"=>$request["phoneNumber"],
+            "course_id"=>$request["course_id"],
+            "schedule_id"=>$request["schedule_id"],
         ]);
         return new ContactUsResource($contact);
     }

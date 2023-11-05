@@ -48,7 +48,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return new ContactUsResource($contact);
+
     }
 
     /**
@@ -56,7 +57,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return new ContactUsResource($contact);
+         //
     }
 
     /**

@@ -49,6 +49,7 @@ Route::get('/get-classroom-training',[UserAccessDatasController::class,'getClass
 Route::get('/get-online-training',[UserAccessDatasController::class,'getOnlineTraining']);
 Route::get('/get-in-house-training',[UserAccessDatasController::class,'getInHouseTraining']);
 Route::post('/contact',[UserAccessDatasController::class,'PostContactus']);
+Route::post('/bookCourse',[UserAccessDatasController::class,'BookCourse']);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
