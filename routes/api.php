@@ -42,7 +42,15 @@ Route::get('/training-courses/{id}', [UserAccessDatasController::class, 'getTrai
 Route::get('/course-schedules/{id}', [UserAccessDatasController::class, 'getCourseSchedules']);
 Route::get('/latest-courses', [UserAccessDatasController::class, 'getUpcomingCourses']);
 Route::get('/courses-with-schedule', [UserAccessDatasController::class, 'getCoursesWithVenue']);
+Route::get('/get-categories',[UserAccessDatasController::class,'getCategories']);
+Route::get('/get-formats',[UserAccessDatasController::class,'getFormats']);
+Route::get('/get-venues',[UserAccessDatasController::class,'getVenues']);
+Route::get('/get-classroom-training',[UserAccessDatasController::class,'getClassroomTraining']);
+Route::get('/get-online-training',[UserAccessDatasController::class,'getOnlineTraining']);
+Route::get('/get-in-house-training',[UserAccessDatasController::class,'getInHouseTraining']);
+Route::post('/contact',[UserAccessDatasController::class,'PostContactus']);
 
+//In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
     Route::resource('/tasks',TaskController::class);

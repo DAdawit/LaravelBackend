@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactUsRequest;
+use App\Http\Resources\CategoryResourse;
+use App\Http\Resources\ContactUsResource;
+use App\Http\Resources\FormatResource;
+use App\Http\Resources\VenuesResource;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Format;
 use App\Models\Schedule;
@@ -71,6 +77,55 @@ class UserAccessDatasController extends Controller
         public function getCoursesWithVenue(){
             $courses = Course::latest()->with(['venue'])->paginate(15);
             return response()->json(["data"=>$courses]);
-
         }
+
+        public function getCategories(){
+            return CategoryResourse::collection(
+                Category::paginate(20)
+            );
+        }
+
+    public function getFormats(){
+        return FormatResource::collection(
+            Format::paginate(20)
+        );
+    }
+
+    public function getVenues(){
+        return VenuesResource::collection(
+            Venue::paginate(20)
+        );
+    }
+
+    public function getClassroomTraining(){
+        $format=Format::where('id',1)->get();
+        $courses = Course::where('format_id', 1)->with(['venue','training'])->paginate(20);
+        $format[0]["courses"]= $courses;
+        return response()->json(["data"=>$format[0]]);
+    }
+    public function getOnlineTraining(){
+        $format=Format::where('id',2)->get();
+        $courses = Course::where('format_id', 2)->with(['venue'])->paginate(20);
+        $format[0]["courses"]= $courses;
+        return response()->json(["data"=>$format[0]]);
+    }
+    public function getInHouseTraining(){
+        $format=Format::where('id',3)->get();
+        $courses = Course::where('format_id', 3)->with(['venue'])->paginate(20);
+        $format[0]["courses"]= $courses;
+        return response()->json(["data"=>$format[0]]);
+    }
+
+
+    public function PostContactus(ContactUsRequest $request)
+    {
+        $request->validated($request->all());
+        $contact=Contact::create([
+            "fullName"=>$request["fullName"],
+            "location"=>$request["location"],
+            "phoneNumber"=>$request["phoneNumber"],
+            "email"=>$request["email"],
+        ]);
+        return new ContactUsResource($contact);
+    }
 }
