@@ -197,5 +197,19 @@ class UserAccessDatasController extends Controller
         return $courses;
     }
 
+    public function GetCoursesByVenue($venueId){
 
+        $venue=Venue::where('id',$venueId)->get();
+        $courses = Course::where('venue_id', $venueId)->with('training')->paginate(20);
+        $venue[0]["courses"]= $courses;
+        return response()->json(["data"=>$venue[0]]);
+    }
+
+    public function GetCoursesByFormat($formatId){
+
+        $venue=Format::where('id',$formatId)->get();
+        $courses = Course::where('format_id', $formatId)->with('training')->paginate(20);
+        $venue[0]["courses"]= $courses;
+        return response()->json(["data"=>$venue[0]]);
+    }
 }

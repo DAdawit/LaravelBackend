@@ -56,6 +56,8 @@ Route::get('/approved-booked-courses',[UserAccessDatasController::class,'Approve
 Route::get('/rejected-booked-courses',[UserAccessDatasController::class,'RejectedBookedCourses']);
 Route::get('/search-courses',[UserAccessDatasController::class,'searchCourse']);
 Route::get('/all-courses-this-month',[UserAccessDatasController::class,"AllCoursesThisMonth"]);
+Route::get('/get-course-by-venue/{id}',[UserAccessDatasController::class,"GetCoursesByVenue"]);
+Route::get('/get-course-by-format/{id}',[UserAccessDatasController::class,"GetCoursesByFormat"]);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
