@@ -13,6 +13,7 @@ use App\Http\Controllers\FormatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserAccessDatasController;
+use App\Http\Controllers\BookController;
 
 
 /*
@@ -50,6 +51,9 @@ Route::get('/get-online-training',[UserAccessDatasController::class,'getOnlineTr
 Route::get('/get-in-house-training',[UserAccessDatasController::class,'getInHouseTraining']);
 Route::post('/contact',[UserAccessDatasController::class,'PostContactus']);
 Route::post('/bookCourse',[UserAccessDatasController::class,'BookCourse']);
+Route::get('/booked-courses',[UserAccessDatasController::class,'BookedCourses']);
+Route::get('/approved-booked-courses',[UserAccessDatasController::class,'ApprovedBookedCourses']);
+Route::get('/rejected-booked-courses',[UserAccessDatasController::class,'RejectedBookedCourses']);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -65,4 +69,5 @@ Route::resource('/courses',CourseController::class);
 Route::resource('/schedules',ScheduleController::class);
 
 Route::resource('/trainings',TrainingController::class);
+Route::resource('/books',BookController::class);
 

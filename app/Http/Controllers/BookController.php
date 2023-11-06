@@ -57,7 +57,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $book->update($request->all());
+//        return $book;
+        $book["status"]=$request->status;
+       return  $book->update();
     }
 
     /**

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phoneNumber');
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->unsignedBigInteger('schedule_id')->nullable(true);
-            $table->boolean('attending')->default(false);
+            $table->string('status')->default('pending');
             $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete();
             $table->foreign('schedule_id')->references('id')->on('schedules')->cascadeOnDelete();
             $table->timestamps();

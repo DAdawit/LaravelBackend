@@ -22,7 +22,8 @@ class BookResource extends JsonResource
                 "email"=>$this->email,
                 "phoneNumber"=>$this->phoneNumber,
                 "course_id"=>$this->course_id,
-                "schedule_id"=>$this->schedule_id
+                "schedule_id"=>$this->schedule_id,
+                'course' => CourseResource::collection(optional($this->course)->first()),
             ]
         ];
     }

@@ -144,4 +144,19 @@ class UserAccessDatasController extends Controller
         ]);
         return new ContactUsResource($contact);
     }
+
+
+    public function BookedCourses(){
+        $books = Book::where('status','pending')->with('course.venue','schedule.course.venue','schedule.venue')->paginate(20);
+        return response()->json(["data"=>$books]);
+    }
+    public function ApprovedBookedCourses(){
+        $books = Book::where('status','approved')->with('course.venue','schedule.course.venue','schedule.venue')->paginate(20);
+        return response()->json(["data"=>$books]);
+    }
+
+    public function RejectedBookedCourses(){
+        $books = Book::where('status','rejected')->with('course.venue','schedule.course.venue','schedule.venue')->paginate(20);
+        return response()->json(["data"=>$books]);
+    }
 }
