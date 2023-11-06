@@ -7,6 +7,7 @@ use App\Http\Requests\ContactUsRequest;
 use App\Http\Resources\CategoryResourse;
 use App\Http\Resources\ContactUsResource;
 use App\Http\Resources\FormatResource;
+use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
 use App\Models\Book;
 use App\Models\Category;
@@ -16,7 +17,9 @@ use App\Models\Format;
 use App\Models\Schedule;
 use App\Models\Training;
 use App\Models\Venue;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+$currentMonth = Carbon::now();
 
 class UserAccessDatasController extends Controller
 {
@@ -81,10 +84,12 @@ class UserAccessDatasController extends Controller
             return response()->json(["data"=>$courses]);
         }
 
-        public function getCategories(){
-            return CategoryResourse::collection(
-                Category::paginate(20)
-            );
+        public function getTrainings(){
+
+        return Training::paginate(20);
+//            return TrainingResource::collection(
+//                Training::paginate(20)
+//            );
         }
 
     public function getFormats(){
@@ -159,4 +164,38 @@ class UserAccessDatasController extends Controller
         $books = Book::where('status','rejected')->with('course.venue','schedule.course.venue','schedule.venue')->paginate(20);
         return response()->json(["data"=>$books]);
     }
+
+    public function searchCourse(Request $request){
+//        return $request["venue_id"];
+
+
+        $query = Course::where('title', 'like', '%' . $request['search'] . '%');
+
+        if (isset($request->venue_id)) {
+            $query->where('venue_id', $request['venue_id']);
+        }
+
+        if (isset($request->format_id)) {
+            $query->where('format_id', $request['format_id']);
+        }
+
+        if (isset($request->training_id)) {
+            $query->where('training_id', $request['training_id']);
+        }
+        $query->with('venue', 'training','format');
+
+        $courses = $query->paginate(20);
+        return $courses;
+    }
+
+    public function AllCoursesThisMonth(){
+        $currentMonth = Carbon::now();
+        $courses = Course::whereYear('start_date', $currentMonth->year)
+            ->whereMonth('start_date', $currentMonth->month)
+            ->with('venue','training','format')
+            ->paginate(20);
+        return $courses;
+    }
+
+
 }
