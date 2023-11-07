@@ -20,7 +20,8 @@ class ContactUsResource extends JsonResource
                 "fullName"=>$this->fullName,
                 "location"=>$this->location,
                 "phoneNumber"=>$this->phoneNumber,
-                "email"=>$this->email
+                "email"=>$this->email,
+                'created_at'=>$this->created_at
             ]
         ];
     }

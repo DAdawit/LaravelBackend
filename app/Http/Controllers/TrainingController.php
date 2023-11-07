@@ -66,12 +66,9 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training)
     {
-        if(Auth::user()->id !== $training->user_id){
-            return $this->error('','you are not allowed to access this data',403);
-        }else{
-            $training->update($request->all());
-            return new TrainingResource($training);
-        }
+
+        $training->update($request->all());
+        return new TrainingResource($training);
     }
 
     /**
@@ -79,7 +76,7 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training)
     {
-        return $this->isNotAuthorized($training) ? $this->isNotAuthorized($training) : $training->delete();
+        return  $training->delete();
     }
 
     private function isNotAuthorized($task){

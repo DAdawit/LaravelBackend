@@ -60,4 +60,22 @@ public function logout(): \Illuminate\Http\JsonResponse
             }else
          return $user;
     }
+
+    public function changePassword(Request $request){
+        $request->validate([
+            'old_password'=>'required',
+            'new_password'=>'required'
+        ]);
+        $user=User::find(Auth::user()->id);
+        if($user){
+            if(Hash::check($request['old_password'],$user->password)){
+                $user->password=bcrypt($request->new_password);
+                $user->update();
+                return 'password changed';
+            }else{
+                return response()->json(['error' => 'old password not match !'], 401);
+            }
+        }
+        return 'user not fuound';
+    }
 }

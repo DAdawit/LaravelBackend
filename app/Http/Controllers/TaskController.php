@@ -66,13 +66,14 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-
-        if(Auth::user()->id !== $task->user_id){
-            return $this->error('','you are not allowed to access this data',403);
-        }else{
-            $task->update($request->all());
-            return new TaskResource($task);
-        }
+//
+//        if(Auth::user()->id !== $task->user_id){
+//            return $this->error('','you are not allowed to access this data',403);
+//        }else{
+//
+//        }
+        $task->update($request->all());
+        return new TaskResource($task);
 
     }
 
@@ -81,7 +82,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        return $this->isNotAuthorized($task) ? $this->isNotAuthorized($task) : $task->delete();
+        return  $task->delete();
 
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactUsRequest;
 use App\Http\Resources\CategoryResourse;
 use App\Http\Resources\ContactUsResource;
+use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,12 @@ class ContactController extends Controller
      */
     public function index()
     {
+
+
         return ContactUsResource::collection(
             Contact::paginate(20)
         );
+
     }
 
     /**
@@ -73,6 +77,18 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        return $contact->delete();
+        return ;
+//        return $contact->delete();
     }
+
+
+    public function deletecontact($id){
+        $data = Contact::find($id);
+        if ($data === null) {
+            // Contact with the provided ID was not found, handle the error
+            return response()->json(['message' => 'Contact not found'], 404);
+        }
+        return $data->delete();
+    }
+
 }

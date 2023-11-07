@@ -85,7 +85,7 @@ class VenueController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        return $this->isNotAuthorized($venue) ? $this->isNotAuthorized($venue) : $venue->delete();
+        return $venue->delete();
     }
 
     private function isNotAuthorized($venue){

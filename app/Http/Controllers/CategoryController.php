@@ -83,7 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        return $this->isNotAuthorized($category) ? $this->isNotAuthorized($category) : $category->delete();
+        return $category->delete();
 
     }
     private function isNotAuthorized($category){

@@ -14,6 +14,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserAccessDatasController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\StatisticsController;
 
 
 /*
@@ -67,11 +69,13 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/venues',VenueController::class);
     Route::resource('/categories',CategoryController::class);
     Route::resource('/formats',FormatController::class);
+    Route::post('/change-password',[AuthController::class,"changePassword"]);
+    Route::resource('/contactus',ContactController::class);
+    Route::get('/statistics',[StatisticsController::class,"index"]);
+    Route::get('/deleteContact/{id}',[ContactController::class,"deletecontact"]);
 
 });
 Route::resource('/courses',CourseController::class);
 Route::resource('/schedules',ScheduleController::class);
-
 Route::resource('/trainings',TrainingController::class);
 Route::resource('/books',BookController::class);
-
