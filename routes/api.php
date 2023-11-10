@@ -17,6 +17,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\SocialMediaController;
 
 
 /*
@@ -62,6 +63,7 @@ Route::get('/all-courses-this-month',[UserAccessDatasController::class,"AllCours
 Route::get('/get-course-by-venue/{id}',[UserAccessDatasController::class,"GetCoursesByVenue"]);
 Route::get('/get-course-by-format/{id}',[UserAccessDatasController::class,"GetCoursesByFormat"]);
 Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
+Route::get('/hero-section',[UserAccessDatasController::class,"getHeroSectionData"]);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -80,7 +82,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/trainings',TrainingController::class);
     Route::resource('/books',BookController::class);
     Route::resource('/hero',HeroController::class);
+    Route::resource('/social-media',SocialMediaController::class);
     Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
-
 });
 

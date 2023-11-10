@@ -219,14 +219,15 @@ class UserAccessDatasController extends Controller
 
     public function  updateHero(Request $request, $id){
         $hero= Hero::find($id);
-//        return $hero;
         if (!$hero) {
             return response()->json(['error' => 'Hero not found'], 404);
         }
         if($request->image === null ){
             $hero->title=$request->title;
             $hero->description=$request->description;
-           return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
+            $hero->update();
+
+            return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
 
         }else{
             $oldImage=$hero->image;
@@ -242,4 +243,12 @@ class UserAccessDatasController extends Controller
            return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
         }
     }
+
+    public function getHeroSectionData(){
+        return HeroResourse::collection(
+            Hero::paginate(20)
+        );
+    }
 }
+
+
