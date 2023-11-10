@@ -8,6 +8,7 @@ use App\Http\Resources\CategoryResourse;
 use App\Http\Resources\ContactUsResource;
 use App\Http\Resources\FormatResource;
 use App\Http\Resources\HeroResourse;
+use App\Http\Resources\SocialMediaResource;
 use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
 use App\Models\Book;
@@ -17,6 +18,7 @@ use App\Models\Course;
 use App\Models\Format;
 use App\Models\Hero;
 use App\Models\Schedule;
+use App\Models\SocialMedia;
 use App\Models\Training;
 use App\Models\Venue;
 use Carbon\Carbon;
@@ -248,6 +250,11 @@ class UserAccessDatasController extends Controller
         return HeroResourse::collection(
             Hero::paginate(20)
         );
+    }
+
+    public function getSocialMediaLinks(){
+        $firstSocialMedia = SocialMedia::first();
+        return $firstSocialMedia;
     }
 }
 

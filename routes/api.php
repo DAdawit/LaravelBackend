@@ -18,6 +18,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\CertificateController;
 
 
 /*
@@ -64,6 +65,7 @@ Route::get('/get-course-by-venue/{id}',[UserAccessDatasController::class,"GetCou
 Route::get('/get-course-by-format/{id}',[UserAccessDatasController::class,"GetCoursesByFormat"]);
 Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
 Route::get('/hero-section',[UserAccessDatasController::class,"getHeroSectionData"]);
+Route::get('/get-social-media-links',[UserAccessDatasController::class,"getSocialMediaLinks"]);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -82,6 +84,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/trainings',TrainingController::class);
     Route::resource('/books',BookController::class);
     Route::resource('/hero',HeroController::class);
+    Route::resource('/certificates',CertificateController::class);
+
     Route::resource('/social-media',SocialMediaController::class);
     Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
 });

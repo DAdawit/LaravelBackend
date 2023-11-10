@@ -69,18 +69,7 @@ class HeroController extends Controller
     public function update(Request $request, Hero $hero)
     {
         return $request->imageCahange;
-//        $image_path = $request->file('image')->store('image', 'public');
-//
-//        if($request["image"] !== null ){
-//            return "image";
-//        }else{
-//            return "no image";
-//        }
-//        if($request->has("image")){
-//            return "request has file";
-//        }else{
-//            return  "request hasn't file";
-//        }
+
     }
 
     /**
