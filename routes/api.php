@@ -16,6 +16,7 @@ use App\Http\Controllers\UserAccessDatasController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\HeroController;
 
 
 /*
@@ -60,6 +61,7 @@ Route::get('/search-courses',[UserAccessDatasController::class,'searchCourse']);
 Route::get('/all-courses-this-month',[UserAccessDatasController::class,"AllCoursesThisMonth"]);
 Route::get('/get-course-by-venue/{id}',[UserAccessDatasController::class,"GetCoursesByVenue"]);
 Route::get('/get-course-by-format/{id}',[UserAccessDatasController::class,"GetCoursesByFormat"]);
+Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -73,9 +75,12 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/contactus',ContactController::class);
     Route::get('/statistics',[StatisticsController::class,"index"]);
     Route::get('/deleteContact/{id}',[ContactController::class,"deletecontact"]);
+    Route::resource('/courses',CourseController::class);
+    Route::resource('/schedules',ScheduleController::class);
+    Route::resource('/trainings',TrainingController::class);
+    Route::resource('/books',BookController::class);
+    Route::resource('/hero',HeroController::class);
+    Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
 
 });
-Route::resource('/courses',CourseController::class);
-Route::resource('/schedules',ScheduleController::class);
-Route::resource('/trainings',TrainingController::class);
-Route::resource('/books',BookController::class);
+

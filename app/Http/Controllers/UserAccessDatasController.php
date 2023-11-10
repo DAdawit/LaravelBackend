@@ -7,6 +7,7 @@ use App\Http\Requests\ContactUsRequest;
 use App\Http\Resources\CategoryResourse;
 use App\Http\Resources\ContactUsResource;
 use App\Http\Resources\FormatResource;
+use App\Http\Resources\HeroResourse;
 use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
 use App\Models\Book;
@@ -14,11 +15,14 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Format;
+use App\Models\Hero;
 use App\Models\Schedule;
 use App\Models\Training;
 use App\Models\Venue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 $currentMonth = Carbon::now();
 
 class UserAccessDatasController extends Controller
@@ -211,5 +215,31 @@ class UserAccessDatasController extends Controller
         $courses = Course::where('format_id', $formatId)->with('training')->paginate(20);
         $venue[0]["courses"]= $courses;
         return response()->json(["data"=>$venue[0]]);
+    }
+
+    public function  updateHero(Request $request, $id){
+        $hero= Hero::find($id);
+//        return $hero;
+        if (!$hero) {
+            return response()->json(['error' => 'Hero not found'], 404);
+        }
+        if($request->image === null ){
+            $hero->title=$request->title;
+            $hero->description=$request->description;
+           return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
+
+        }else{
+            $oldImage=$hero->image;
+
+            if (Storage::disk('public')->exists($oldImage)) {
+                Storage::disk('public')->delete($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+            $hero->title=$request->title;
+            $hero->description=$request->description;
+            $hero->image=$image_path;
+            $hero->update();
+           return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
+        }
     }
 }
