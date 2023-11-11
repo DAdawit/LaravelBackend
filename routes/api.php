@@ -88,5 +88,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
 
     Route::resource('/social-media',SocialMediaController::class);
     Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
+    Route::Post('/update-certification/{id}',[UserAccessDatasController::class,"updateCertification"]);
+
 });
 

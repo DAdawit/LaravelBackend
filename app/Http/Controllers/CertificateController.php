@@ -6,6 +6,7 @@ use App\Http\Requests\CertificateRequest;
 use App\Http\Resources\CertificateResource;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CertificateController extends Controller
 {
@@ -69,7 +70,11 @@ class CertificateController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Certificate $certificate)
-    {
-        //
+    {  $image_path=$certificate->image;
+
+        if (Storage::disk('public')->exists($image_path)) {
+            Storage::disk('public')->delete($image_path);
+        }
+        return $certificate->delete();
     }
 }

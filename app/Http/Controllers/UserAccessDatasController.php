@@ -13,6 +13,7 @@ use App\Http\Resources\TrainingResource;
 use App\Http\Resources\VenuesResource;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Certificate;
 use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Format;
@@ -243,6 +244,30 @@ class UserAccessDatasController extends Controller
             $hero->image=$image_path;
             $hero->update();
            return response()->json(["data"=>$hero,"message"=>"updated successfully"],200);
+        }
+    }
+
+    public function  updateCertification(Request $request, $id){
+        $certificate= Certificate::find($id);
+        if (!$certificate) {
+            return response()->json(['error' => 'Certificate not found'], 404);
+        }
+        if($request->image === null ){
+            $certificate->name=$request->name;
+            $certificate->update();
+            return response()->json(["data"=>$certificate,"message"=>"updated successfully"],200);
+
+        }else{
+            $oldImage=$certificate->image;
+
+            if (Storage::disk('public')->exists($oldImage)) {
+                Storage::disk('public')->delete($oldImage);
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+            $certificate->name=$request->name;
+            $certificate->image=$image_path;
+            $certificate->update();
+            return response()->json(["data"=>$certificate,"message"=>"updated successfully"],200);
         }
     }
 
