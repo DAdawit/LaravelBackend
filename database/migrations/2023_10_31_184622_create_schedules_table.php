@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('fee');
+//            $table->integer('fee');
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('course_id');
             $table->timestamps();

@@ -24,7 +24,6 @@ class ScheduleRequest extends FormRequest
         return [
             "start_date"=>["required"],
             "end_date"=>["required"],
-            "fee"=>["required"],
             "venue_id"=>["required"],
             "course_id"=>["required"]
         ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\ContactUsRequest;
 use App\Http\Resources\CategoryResourse;
+use App\Http\Resources\CertificateResource;
 use App\Http\Resources\ContactUsResource;
 use App\Http\Resources\FormatResource;
 use App\Http\Resources\HeroResourse;
@@ -65,7 +66,7 @@ class UserAccessDatasController extends Controller
         if (!$training){
             return null;
         }
-        $courses= Course::where('training_id',$trainingId)->with(['venue'])->paginate(20);
+        $courses= Course::where('training_id',$trainingId)->with(['venue','certificate'])->paginate(20);
         $training["courses"]=$courses;
 
         return response()->json(['data'=>$training]);
@@ -108,6 +109,12 @@ class UserAccessDatasController extends Controller
     public function getVenues(){
         return VenuesResource::collection(
             Venue::paginate(20)
+        );
+    }
+
+    public function getCertificates(){
+        return CertificateResource::collection(
+            Certificate::paginate(20)
         );
     }
 
@@ -281,6 +288,7 @@ class UserAccessDatasController extends Controller
         $firstSocialMedia = SocialMedia::first();
         return $firstSocialMedia;
     }
+
 }
 
 

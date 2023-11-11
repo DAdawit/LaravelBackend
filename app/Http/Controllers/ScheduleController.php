@@ -40,7 +40,6 @@ class ScheduleController extends Controller
         $schedule= Schedule::create([
             "start_date"=>$request["start_date"],
             "end_date"=>$request["end_date"],
-            "fee"=>$request["fee"],
             "venue_id"=>$request["venue_id"],
             "course_id"=>$request["course_id"],
         ]);

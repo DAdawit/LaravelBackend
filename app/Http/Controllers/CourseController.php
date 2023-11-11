@@ -39,11 +39,11 @@ class CourseController extends Controller
 
         $course =  Course::create([
             "title"=>$request["title"],
-            "fee"=>$request["fee"],
             "description"=>$request["description"],
             "course_outline"=>$request["course_outline"],
             "format_id"=>$request["format_id"],
             "training_id"=>$request["training_id"],
+            "certificate_id"=>$request["certificate_id"],
             "venue_id"=>$request["venue_id"],
             "start_date"=>$request["start_date"],
             "end_date"=>$request["end_date"],

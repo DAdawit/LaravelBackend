@@ -51,6 +51,8 @@ Route::get('/courses-with-schedule', [UserAccessDatasController::class, 'getCour
 Route::get('/get-trainings',[UserAccessDatasController::class,'getTrainings']);
 Route::get('/get-formats',[UserAccessDatasController::class,'getFormats']);
 Route::get('/get-venues',[UserAccessDatasController::class,'getVenues']);
+Route::get('/get-certificates',[UserAccessDatasController::class,'getCertificates']);
+
 Route::get('/get-classroom-training',[UserAccessDatasController::class,'getClassroomTraining']);
 Route::get('/get-online-training',[UserAccessDatasController::class,'getOnlineTraining']);
 Route::get('/get-in-house-training',[UserAccessDatasController::class,'getInHouseTraining']);
@@ -85,10 +87,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/books',BookController::class);
     Route::resource('/hero',HeroController::class);
     Route::resource('/certificates',CertificateController::class);
-
     Route::resource('/social-media',SocialMediaController::class);
     Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
     Route::Post('/update-certification/{id}',[UserAccessDatasController::class,"updateCertification"]);
-
 });
 

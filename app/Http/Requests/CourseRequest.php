@@ -27,7 +27,7 @@ class CourseRequest extends FormRequest
             "course_outline"=>["required"],
             "training_id"=>["required"],
             "venue_id"=>["required"],
-            "fee"=>["required"],
+            "certificate_id"=>["required"],
             "format_id"=>["required"],
             "start_date"=>["required"],
             "end_date"=>["required"]

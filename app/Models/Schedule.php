@@ -10,7 +10,6 @@ class Schedule extends Model
     protected $fillable=[
         "start_date",
         "end_date",
-        "fee",
         "venue_id",
         "course_id"
     ];

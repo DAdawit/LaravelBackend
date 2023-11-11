@@ -19,7 +19,6 @@ class ScheduleResource extends JsonResource
             "attributes"=>[
                 "start_date"=>$this->start_date,
                 "end_date"=>$this->end_date,
-                "fee"=>$this->fee,
                 "venue"=>[
                     "id"=>(string)$this->venue->id,
                     "name"=>$this->venue->name,

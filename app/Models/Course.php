@@ -13,7 +13,7 @@ class Course extends Model
         "course_outline",
         "training_id",
         "venue_id",
-        "fee",
+        "certificate_id",
         "format_id",
         "start_date",
         "end_date"
@@ -28,6 +28,9 @@ class Course extends Model
     }
     public function venue(){
         return $this->belongsTo(Venue::class);
+    }
+    public function certificate(){
+        return $this->belongsTo(Certificate::class);
     }
     public function books(){
         return $this->hasMany(Book::class);
