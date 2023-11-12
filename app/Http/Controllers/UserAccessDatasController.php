@@ -60,7 +60,13 @@ class UserAccessDatasController extends Controller
              $categories = Category::with('trainings')->get();
              return response()->json(['data' => $categories], 200);
         }
+        public function getCertificateCourses($id){
+        $certification= Certificate::find($id);
+        $courses= Course::where('certificate_id',$id)->with(["venue"])->paginate(20);
+        $certification["courses"]=$courses;
 
+        return response()->json(['data'=>$certification]);
+        }
         public function getTrainingCourses($trainingId){
         $training = Training::find($trainingId);
         if (!$training){

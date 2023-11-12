@@ -68,6 +68,7 @@ Route::get('/get-course-by-format/{id}',[UserAccessDatasController::class,"GetCo
 Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
 Route::get('/hero-section',[UserAccessDatasController::class,"getHeroSectionData"]);
 Route::get('/get-social-media-links',[UserAccessDatasController::class,"getSocialMediaLinks"]);
+Route::get('/get-certificate-courses/{id}',[UserAccessDatasController::class,"getCertificateCourses"]);
 
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
