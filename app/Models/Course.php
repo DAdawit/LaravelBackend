@@ -14,6 +14,7 @@ class Course extends Model
         "training_id",
         "venue_id",
         "certificate_id",
+        "category_id",
         "format_id",
         "start_date",
         "end_date"

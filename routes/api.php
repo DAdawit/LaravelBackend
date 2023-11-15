@@ -58,7 +58,6 @@ Route::get('/get-online-training',[UserAccessDatasController::class,'getOnlineTr
 Route::get('/get-in-house-training',[UserAccessDatasController::class,'getInHouseTraining']);
 Route::post('/contact',[UserAccessDatasController::class,'PostContactus']);
 Route::post('/bookCourse',[UserAccessDatasController::class,'BookCourse']);
-Route::get('/booked-courses',[UserAccessDatasController::class,'BookedCourses']);
 Route::get('/approved-booked-courses',[UserAccessDatasController::class,'ApprovedBookedCourses']);
 Route::get('/rejected-booked-courses',[UserAccessDatasController::class,'RejectedBookedCourses']);
 Route::get('/search-courses',[UserAccessDatasController::class,'searchCourse']);
@@ -73,8 +72,6 @@ Route::get('/get-certificate-courses/{id}',[UserAccessDatasController::class,"ge
 //In-House Solution
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::resource('/tasks',TaskController::class);
-    Route::resource('/products',ProductController::class);
     Route::resource('/venues',VenueController::class);
     Route::resource('/categories',CategoryController::class);
     Route::resource('/formats',FormatController::class);
@@ -91,5 +88,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/social-media',SocialMediaController::class);
     Route::Post('/update-hero/{id}',[UserAccessDatasController::class,"updateHero"]);
     Route::Post('/update-certification/{id}',[UserAccessDatasController::class,"updateCertification"]);
+    Route::get('/booked-courses',[UserAccessDatasController::class,'BookedCourses']);
+
 });
 

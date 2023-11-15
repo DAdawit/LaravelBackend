@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('format_id');
             $table->unsignedBigInteger('certificate_id');
+            $table->unsignedBigInteger('category_id');
             $table->date("start_date");
             $table->date("end_date");
 //            $table->integer('fee');
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->foreign('training_id')->references('id')->on('trainings')->cascadeOnDelete();
             $table->foreign('venue_id')->references('id')->on('venues')->cascadeOnDelete();
             $table->foreign('certificate_id')->references('id')->on('certificates')->cascadeOnDelete();
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
         });
     }
 

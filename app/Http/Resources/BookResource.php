@@ -20,6 +20,7 @@ class BookResource extends JsonResource
                 "firstName"=>$this->firstName,
                 "lastName"=>$this->lastName,
                 "email"=>$this->email,
+                "address"=>$this->address,
                 "phoneNumber"=>$this->phoneNumber,
                 "course_id"=>$this->course_id,
                 "schedule_id"=>$this->schedule_id,

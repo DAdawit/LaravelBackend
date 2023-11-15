@@ -72,7 +72,7 @@ class UserAccessDatasController extends Controller
         if (!$training){
             return null;
         }
-        $courses= Course::where('training_id',$trainingId)->with(['venue','certificate'])->paginate(20);
+        $courses= Course::where('training_id',$trainingId)->with(['venue','certificate'])->paginate(15);
         $training["courses"]=$courses;
 
         return response()->json(['data'=>$training]);
@@ -114,7 +114,7 @@ class UserAccessDatasController extends Controller
 
     public function getVenues(){
         return VenuesResource::collection(
-            Venue::paginate(20)
+            Venue::paginate(15)
         );
     }
 
@@ -164,6 +164,7 @@ class UserAccessDatasController extends Controller
             "lastName"=>$request["lastName"],
             "email"=>$request["email"],
             "phoneNumber"=>$request["phoneNumber"],
+            "address"=>$request["address"],
             "course_id"=>$request["course_id"],
             "schedule_id"=>$request["schedule_id"],
         ]);
@@ -199,8 +200,8 @@ class UserAccessDatasController extends Controller
             $query->where('format_id', $request['format_id']);
         }
 
-        if (isset($request->training_id)) {
-            $query->where('training_id', $request['training_id']);
+        if (isset($request->category_id)) {
+            $query->where('category_id', $request['category_id']);
         }
         $query->with('venue', 'training','format');
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('email');
             $table->string('phoneNumber');
+            $table->string('address');
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->unsignedBigInteger('schedule_id')->nullable(true);
             $table->string('status')->default('pending');

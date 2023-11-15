@@ -7,6 +7,7 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\FormatResource;
 use App\Http\Resources\TrainingResource;
 use App\Models\Course;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,9 +46,18 @@ class CourseController extends Controller
             "training_id"=>$request["training_id"],
             "certificate_id"=>$request["certificate_id"],
             "venue_id"=>$request["venue_id"],
+            "category_id"=>$request["category_id"],
             "start_date"=>$request["start_date"],
             "end_date"=>$request["end_date"],
         ]);
+        $schedule = Schedule::create([
+            "course_id"=>$course->id,
+            "venue_id"=>$request["venue_id"],
+            "start_date"=>$request["start_date"],
+            "end_date"=>$request["end_date"],
+        ]);
+
+
         return new CourseResource($course);
     }
 
