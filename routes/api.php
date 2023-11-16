@@ -46,6 +46,8 @@ Route::get('/format-courses/{id}', [UserAccessDatasController::class, 'getAllCou
 Route::get('/category-trainings', [UserAccessDatasController::class, 'getAllCategoriesWithTrainings']);
 Route::get('/training-courses/{id}', [UserAccessDatasController::class, 'getTrainingCourses']);
 Route::get('/course-schedules/{id}', [UserAccessDatasController::class, 'getCourseSchedules']);
+Route::get('/get-all-schedules/{id}', [UserAccessDatasController::class, 'getAllSchedulesForCourse']);
+
 Route::get('/latest-courses', [UserAccessDatasController::class, 'getUpcomingCourses']);
 Route::get('/courses-with-schedule', [UserAccessDatasController::class, 'getCoursesWithVenue']);
 Route::get('/get-trainings',[UserAccessDatasController::class,'getTrainings']);

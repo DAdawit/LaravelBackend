@@ -88,6 +88,19 @@ class UserAccessDatasController extends Controller
         return response()->json(["data"=>$course]);
         }
 
+    public function getAllSchedulesForCourse($courseId){
+        $course = Course::find($courseId);
+        $certificate = Certificate::where("id",$course->certificate_id)->firs();
+        if(!$course){
+            return null;
+        }
+        $schedules = Schedule::where("course_id",$courseId)->with(['venue'])->get();
+        $course["schedules"]= $schedules;
+        $course["certificate"]=$certificate;
+        return response()->json(["data"=>$course]);
+    }
+
+
         public function getUpcomingCourses(){
         $courses = Course::latest()->take(10)->with(['venue'])->get();
         return response()->json(["data"=>$courses]);
